@@ -5,15 +5,31 @@ import java.util.Date;
 public class InspectionVO {
     private int inspectionId;
     private String propertyId;
+    private String inspectionStatusCd;
+    private String scheduleTime;
 
-    @Override
-    public String toString() {
-        return "InspectionVO{" +
-                "inspectionId=" + inspectionId +
-                ", propertyId='" + propertyId + '\'' +
-                ", scheduledTime=" + scheduledTime +
-                '}';
+    public String getScheduleTime() {
+        return scheduleTime;
     }
+
+    public void setScheduleTime(String scheduleTime) {
+        this.scheduleTime = scheduleTime;
+    }
+
+    public String getInspectionStatusCd() {
+        return inspectionStatusCd;
+    }
+
+    public void setInspectionStatusCd(String inspectionStatusCd) {
+        this.inspectionStatusCd = inspectionStatusCd;
+    }
+
+
+
+
+
+
+
 
     public int getInspectionId() {
         return inspectionId;
@@ -31,13 +47,6 @@ public class InspectionVO {
         this.propertyId = propertyId;
     }
 
-    public String getScheduledTime() {
-        return scheduledTime;
-    }
 
-    public void setScheduledTime(String scheduledTime) {
-        this.scheduledTime = scheduledTime;
-    }
 
-    private String scheduledTime;
 }
