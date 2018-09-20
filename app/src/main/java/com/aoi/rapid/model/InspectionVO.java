@@ -31,13 +31,13 @@ public class InspectionVO {
         this.propertyId = propertyId;
     }
 
-    public Date getScheduledTime() {
+    public String getScheduledTime() {
         return scheduledTime;
     }
 
-    public void setScheduledTime(Date scheduledTime) {
+    public void setScheduledTime(String scheduledTime) {
         this.scheduledTime = scheduledTime;
     }
 
-    private Date scheduledTime;
+    private String scheduledTime;
 }

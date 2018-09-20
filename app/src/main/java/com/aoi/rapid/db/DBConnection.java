@@ -1,8 +1,13 @@
 package com.aoi.rapid.db;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.aoi.rapid.model.InspectionVO;
+
 import java.io.*;
 
 public class DBConnection extends SQLiteOpenHelper{
@@ -66,22 +71,60 @@ public class DBConnection extends SQLiteOpenHelper{
        // onCreate(db);
 
     }
-    /*public  String convertStreamToString(InputStream is)
-            throws IOException {
-        Writer writer = new StringWriter();
-        char[] buffer = new char[2048];
-        try {
-            Reader reader = new BufferedReader(new InputStreamReader(is,
-                    "UTF-8"));
-            int n;
-            while ((n = reader.read(buffer)) != -1) {
-                writer.write(buffer, 0, n);
-            }
-        } finally {
-            is.close();
-        }
-        String text = writer.toString();
-        return text;
-    }*/
+    public boolean addData()
+    {
+      //  DBConnection dbConnection=new DBConnection(this);
+        SQLiteDatabase sqLiteDatabase= this.getWritableDatabase();
+        ContentValues cv=new ContentValues();
+        cv.put("INSPECTION_ID",5515101);
+        cv.put("RAPID_SOFTWARE_ID",10);
+        cv.put("INSPECTION_STATUS_CODE","UPLOAD");
+        cv.put("REAC_PROPERTY_ID",40051);
+        cv.put("INSPECTION_TYPE_CODE","STNDRD");
+        cv.put("INSPECTION_CODE","REG");
+        cv.put("SCHEDULED_INSPECTOR_CODE","CPASS2");
+        cv.put("SCHEDULED_DATETIME","2018-04-09 15:30:00");
 
+        cv.put("INSPECTION_START_TIMESTAMP","2018-04-09 15:30:00");
+        cv.put("INSPECTION_FINISH_TIMESTAMP","2018-04-09 15:30:00");
+        cv.put("SAMPLE_GENERATED_TIMESTAMP","2018-04-09 15:30:00");
+        cv.put("SAMPLE_INTERVAL",3.54);
+        cv.put("HUD_INSPECTOR_CODE","H55157");
+        cv.put("MAX_SAMPLE_SIZE",2);
+
+        cv.put("HUD_INSPECTOR_PRESENT_IND","Y");
+        cv.put("EHS_COUNT",2);
+        cv.put("EHS_REPORT_GENERATED_IND","Y");
+        cv.put("MAX_DOWNLOAD_COUNT",2);
+        cv.put("DOWNLOAD_CTR",1);
+        cv.put("UPLOAD_CTR",1);
+        cv.put("LAST_UPDATE_USER_ID","vindy");
+        cv.put("LAST_UPDATE_TIMESTAMP","2018-09-18 9:00:00");
+        cv.put("CREATE_USER_ID","vindy");
+        cv.put("CREATE_TIMESTAMP","2018-09-18 9:00:00");
+
+
+
+
+        long row= sqLiteDatabase.insert("INSPECTION",null,cv);
+        System.out.println("row inserted "+row);
+        if(row==-1)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+public Cursor getInspectionList()
+{
+    SQLiteDatabase sqLiteDatabaseRead=this.getReadableDatabase();
+    Cursor data =null;
+
+    data= sqLiteDatabaseRead.rawQuery("SELECT * FROM INSPECTION",null);
+   int count=data.getCount();
+   System.out.println("Count"+count);
+    return data;
+}
 }
